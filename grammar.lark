@@ -1,0 +1,22 @@
+?code: braced | access | prefix | postfix | infix | thing
+infix: thing _SPACE VAR _SPACE code | thing _SPACE? SVAR _SPACE? code
+prefix: VAR _SPACE code | SVAR code
+postfix: code _SPACE VAR | code SVAR
+braced: SVAR _SPACE? code _SPACE? SVAR
+access: VAR braced
+?thing: STRING | INTEGER | DECIMAL | BOOL | NULL | VAR
+BOOL: "true" | "false"
+NULL: "null"
+VAR: (LETTER (LETTER | DIGIT)*)
+SVAR: SYMBOL+
+// So far the only reserved symbols are " and # for strings and comments respectively
+SYMBOL: "!" | "$".."/" | ":".."@" | "[".."`" | "{".."~"
+DECIMAL.2: WDECIMAL
+
+
+%import common.ESCAPED_STRING -> STRING
+%import common.INT -> INTEGER
+%import common.DECIMAL -> WDECIMAL
+%import common.LETTER -> LETTER
+%import common.DIGIT -> DIGIT
+%import common.WS_INLINE -> _SPACE
