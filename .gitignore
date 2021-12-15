@@ -1,2 +1,9 @@
 # ignore python environment
 env
+
+# Ignore Binaries
+*.exe
+*.dll
+
+# Ignore vscode
+.vscode
